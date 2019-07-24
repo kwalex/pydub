@@ -606,7 +606,7 @@ class AudioSegment(object):
         return obj
 
     @classmethod
-    def from_file(cls, file, format=None, codec=None, parameters=None, **kwargs):
+    def from_file(cls, file, format=None, codec=None, parameters=None, input_parameters=None, **kwargs):
         orig_file = file
         try:
             filename = fsdecode(file)
@@ -661,6 +661,10 @@ class AudioSegment(object):
         read_ahead_limit = kwargs.get('read_ahead_limit', -1)
         if filename:
             conversion_command += ["-i", filename]
+
+            if input_parameters is not None:
+                # extend arguments with arbitrary set
+                conversion_command.extend(parameters)
             stdin_parameter = None
             stdin_data = None
         else:
