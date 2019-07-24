@@ -664,7 +664,7 @@ class AudioSegment(object):
 
             if input_parameters is not None:
                 # extend arguments with arbitrary set
-                conversion_command.extend(parameters)
+                conversion_command.extend(input_parameters)
             stdin_parameter = None
             stdin_data = None
         else:
