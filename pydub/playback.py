@@ -48,11 +48,13 @@ def _play_with_simpleaudio(seg):
     )
 
 
-def play(audio_segment):
+def play(audio_segment, callback=None):
     try:
         playback = _play_with_simpleaudio(audio_segment)
         try:
             playback.wait_done()
+            if callback is not None:
+                callback()
         except KeyboardInterrupt:
             playback.stop()
     except ImportError:
